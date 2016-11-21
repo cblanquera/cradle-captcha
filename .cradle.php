@@ -12,3 +12,7 @@ Flow::register('captcha', function() use ($cradle) {
 
     return $cache;
 });
+
+$cradle->on('captcha-load', Flow::captcha()->load);
+$cradle->on('captcha-render', Flow::captcha()->render);
+$cradle->on('captcha-validate', Flow::captcha()->check);
