@@ -66,6 +66,13 @@ class Captcha
         $actual = $request->getStage('g-recaptcha-response');
         $config = $this->app->package('global')->service('captcha-main');
 
+        //if no config
+        if(!$config) {
+            //let it pass
+            $this->app->subflow($this->yes, $request, $response);
+            return $this;
+        }
+
         $result = CurlHandler::i()
             ->setUrl(self::END_POINT)
             ->verifyHost(false)
@@ -101,6 +108,11 @@ class Captcha
      */
     public function load(Request $request, Response $response) {
         $config = $this->app->package('global')->service('captcha-main');
+
+        //if no config
+        if(!$config) {
+            return $this;
+        }
 
         //render the key
         $key = $config['token'];
