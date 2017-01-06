@@ -67,7 +67,12 @@ class Captcha
         $config = $this->app->package('global')->service('captcha-main');
 
         //if no config
-        if(!$config) {
+        if(!$config
+            || !isset($config['token'], $config['secret'])
+            || $config['token'] === '<GOOGLE CAPTCHA TOKEN>'
+            || $config['secret'] === '<GOOGLE CAPTCHA SECRET>'
+        )
+        {
             //let it pass
             $this->app->subflow($this->yes, $request, $response);
             return $this;
@@ -110,7 +115,12 @@ class Captcha
         $config = $this->app->package('global')->service('captcha-main');
 
         //if no config
-        if(!$config) {
+        if(!$config
+            || !isset($config['token'], $config['secret'])
+            || $config['token'] === '<GOOGLE CAPTCHA TOKEN>'
+            || $config['secret'] === '<GOOGLE CAPTCHA SECRET>'
+        )
+        {
             return $this;
         }
 
