@@ -1,4 +1,6 @@
-# cradle-mail
+> Deprecation Notice: This project has been moved to https://github.com/CradlePHP/cradle-captcha
+
+# cradle-captcha
 Google Captcha Handling for Cradle
 
 ## 1. Requirements
